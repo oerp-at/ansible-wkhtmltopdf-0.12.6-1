@@ -1,0 +1,17 @@
+---
+# tasks file for wkhtmltopdf-0.12.1
+
+- name: copy wkhtmltox
+  copy:
+    src: files/wkhtmltox_0.12.6-1.bionic_amd64.deb
+    dest: /root/wkhtmltox_0.12.6-1.bionic_amd64.deb
+
+- name: check if wkhtmltox is already installed
+  stat:
+    path: /usr/bin/wkhtmltopdf
+  register: wkhtmltopdf
+
+- name: install wkhtmltox
+  shell:
+    cmd: dpkg -i /root/wkhtmltox_0.12.6-1.bionic_amd64.deb ; apt-get install -f -y
+  when: not wkhtmltopdf.stat.exists
