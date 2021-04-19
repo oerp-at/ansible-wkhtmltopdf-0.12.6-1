@@ -13,5 +13,5 @@
 
 - name: install wkhtmltox
   shell:
-    cmd: dpkg -i /root/wkhtmltox_0.12.6-1.bionic_amd64.deb ; apt-get install -R -f -y
+    cmd: dpkg -i /root/wkhtmltox_0.12.6-1.bionic_amd64.deb ; apt-get install --no-install-recommends -f -y
   when: not wkhtmltopdf.stat.exists
